@@ -124,26 +124,6 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
-        .geoguessr-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .geoguessr-list li {
-            margin-bottom: 1rem;
-        }
-
-        .geoguessr-list a {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .geoguessr-list a:hover {
-            color: #0056b3;
-        }
-
         .drag-drop-quiz-container {
             display: flex;
             justify-content: space-between;
@@ -259,7 +239,7 @@
     </div>
     
     <div class="section">
-        <h2>Pasul 2: Quiz Județele României și Street View</h2>
+        <h2>Pasul 2: Quiz Județele României și Geoguessr</h2>
         <div class="quiz-item">
             <div class="quiz-details">
                 <h3>Quiz Județele României</h3>
@@ -274,12 +254,17 @@
         
         <hr style="border: 0; height: 1px; background: #dee2e6; margin: 2rem 0;">
 
-        <h3>Geoguessr - Aventura Vizuală</h3>
-        <p>Explorează România prin intermediul imaginilor din Street View. Alege una dintre aventuri:</p>
-        <ul class="geoguessr-list">
-            <li><strong>Pasul 1:</strong> <a href="https://www.geoguessr.com/vgp/3087?locale=ro" target="_blank">România - Geoguessr I</a></li>
-            <li><strong>Pasul 2:</strong> <a href="https://www.geoguessr.com/vgp/3756" target="_blank">România - Geoguessr II</a></li>
-        </ul>
+        <div class="quiz-item quiz-item-reverse">
+            <div class="quiz-details">
+                <h3>Reședințele de Județ ale României</h3>
+                <p>Explorează România prin Street View și ghicește unde te afli.</p>
+            </div>
+            <a href="https://www.geoguessr.com/vgp/3087?locale=ro" target="_blank" class="quiz-link">
+                <div class="quiz-image">
+                    <img src="https://cdn.adh.reperio.news/image-a/afa87ae2-3e3c-4cdd-9251-1e6e84d7c529/index.jpeg?p=a%3D1%26co%3D1.05%26w%3D700%26h%3D750%26r%3Dcontain%26f%3Dwebp" alt="Harta României cu reședințele de județ">
+                </div>
+            </a>
+        </div>
     </div>
 
     <div class="section">
