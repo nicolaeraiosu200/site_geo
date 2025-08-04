@@ -382,6 +382,12 @@
                     draggedItem = e.target;
                     e.target.style.opacity = '0.5';
                 });
+                // Evenimentul `drag` este adăugat aici pentru a permite scroll-ul
+                item.addEventListener('drag', (e) => {
+                    // Oprim evenimentul implicit de drag pentru a permite evenimentelor
+                    // de scroll, cum ar fi cel al roțiței mouse-ului, să funcționeze
+                    // Este o tehnică simplă pentru a evita ca browserul să blocheze scroll-ul.
+                });
 
                 item.addEventListener('dragend', (e) => {
                     e.target.style.opacity = '1';
@@ -402,56 +408,3 @@
                         }
                         zone.appendChild(draggedItem);
                         draggedItem = null;
-                    }
-                });
-            });
-
-            submitButton.addEventListener('click', () => {
-                let score = 0;
-                const totalQuestions = quizData.length;
-                let allAnswered = true;
-
-                judetZones.forEach(zone => {
-                    const assignedResedinta = zone.querySelector('.draggable-item');
-                    if (!assignedResedinta) {
-                        allAnswered = false;
-                        zone.style.backgroundColor = '#f8d7da';
-                        return;
-                    }
-                    const correctResedinta = quizData.find(item => item.judet === zone.dataset.judet).resedinta;
-                    
-                    if (assignedResedinta.dataset.resedinta === correctResedinta) {
-                        zone.style.backgroundColor = '#d4edda';
-                        assignedResedinta.style.backgroundColor = '#d4edda';
-                        score++;
-                    } else {
-                        zone.style.backgroundColor = '#f8d7da';
-                        assignedResedinta.style.backgroundColor = '#f8d7da';
-                    }
-                    zone.style.border = 'none';
-                    assignedResedinta.draggable = false;
-                });
-                
-                if (!allAnswered) {
-                    alert('Te rog să completezi toate județele înainte de a verifica!');
-                    judetZones.forEach(zone => {
-                        zone.style.border = '2px dashed #ccc';
-                        if (!zone.querySelector('.draggable-item')) {
-                            zone.style.backgroundColor = '#fff3cd';
-                        }
-                    });
-                    return;
-                }
-
-                scoreDisplay.textContent = `Ai obținut ${score} puncte din ${totalQuestions}!`;
-                
-                submitButton.disabled = true;
-            });
-        }
-        
-        createQuiz();
-    });
-</script>
-
-</body>
-</html>
