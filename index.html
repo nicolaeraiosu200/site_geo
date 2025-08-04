@@ -1,1 +1,225 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jocuri Geografice - România</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-item-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .quiz-details {
+            flex: 1;
+        }
+
+        .quiz-details h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        .quiz-details p {
+            line-height: 1.6;
+        }
+
+        .quiz-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .quiz-image {
+            width: 250px;
+            height: auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .quiz-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .quiz-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .quiz-image:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .geoguessr-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .geoguessr-list li {
+            margin-bottom: 1rem;
+        }
+
+        .geoguessr-list a {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .geoguessr-list a:hover {
+            color: #0056b3;
+        }
+
+        .drag-drop-quiz-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .column {
+            flex: 1;
+            padding: 1rem;
+            border: 2px dashed var(--secondary-color);
+            border-radius: var(--border-radius);
+            min-height: 300px;
+        }
+
+        .column h3 {
+            text-align: center;
+            color: var(--secondary-color);
+        }
+
+        .draggable-item, .droppable-zone {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            background-color: var(--background-color);
+            border: 1px solid #dee2e6;
+            cursor: grab;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .submit-button {
+            display: block;
+            width: 200px;
+            margin: 2rem auto 0;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Jocuri Geografice - România</h1>
+    <p>O colecție de jocuri interactive pentru a învăța geografia României.</p>
+</header>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Quiz-uri Geografice</h2>
+        <div class="quiz-item">
+            <div class="quiz-details">
+                <h3>1. Quiz Relieful României</h3>
+                <p>Verifică-ți cunoștințele despre formele de relief din România. Apasă pe hartă pentru a începe jocul!</p>
+            </div>
+            <a href="https://www.purposegames.com/game/relieful-romaniei" target="_blank" class="quiz-link">
+                <div class="quiz-image">
+                    <img src="https://i.imgur.com/vHqJk6K.jpeg" alt="Harta României cu relieful">
+                </div>
+            </a>
+        </div>
+        
+        <hr style="border: 0; height: 1px; background: #dee2e6; margin: 2rem 0;">
+
+        <div class="quiz-item quiz-item-reverse">
+            <div class="quiz-details">
+                <h3>2. Quiz Râurile
