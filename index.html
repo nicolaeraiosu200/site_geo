@@ -1,457 +1,868 @@
 <!DOCTYPE html>
+
 <html lang="ro">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Jocuri Geografice - România</title>
+
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+
         :root {
+
             --primary-color: #007bff;
+
             --secondary-color: #6c757d;
+
             --background-color: #f8f9fa;
+
             --card-background: #ffffff;
+
             --text-color: #343a40;
+
             --border-radius: 12px;
+
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
             --transition-speed: 0.3s;
+
         }
+
 
         body {
+
             font-family: 'Montserrat', sans-serif;
+
             background-color: var(--background-color);
+
             color: var(--text-color);
+
             margin: 0;
+
             padding: 2rem;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
         }
+
 
         header {
+
             text-align: center;
+
             margin-bottom: 3rem;
+
         }
+
 
         header h1 {
+
             font-size: 2.5rem;
+
             color: var(--primary-color);
+
         }
+
 
         .container {
+
             width: 100%;
+
             max-width: 900px;
+
             display: flex;
+
             flex-direction: column;
+
             gap: 2rem;
+
         }
+
 
         .section {
+
             background-color: var(--card-background);
+
             padding: 2rem;
+
             border-radius: var(--border-radius);
+
             box-shadow: var(--box-shadow);
+
             transition: transform var(--transition-speed) ease;
+
         }
+
 
         .section:hover {
+
             transform: translateY(-5px);
+
         }
+
 
         h2 {
+
             font-size: 1.8rem;
+
             color: var(--primary-color);
+
             border-bottom: 2px solid var(--primary-color);
+
             padding-bottom: 0.5rem;
+
             margin-bottom: 1.5rem;
+
         }
+
 
         .quiz-item {
+
             display: flex;
+
             align-items: center;
+
             gap: 2rem;
+
             margin-bottom: 2rem;
+
         }
+
 
         .quiz-item-reverse {
+
             flex-direction: row-reverse;
+
         }
+
 
         .quiz-details {
+
             flex: 1;
+
         }
+
 
         .quiz-details h3 {
+
             font-size: 1.5rem;
+
             color: var(--text-color);
+
             margin-top: 0;
+
         }
+
 
         .quiz-details p {
+
             line-height: 1.6;
+
         }
+
 
         .quiz-link {
+
             text-decoration: none;
+
             color: inherit;
+
             display: block;
+
         }
+
 
         .quiz-image {
+
             width: 250px;
+
             height: auto;
+
             border-radius: var(--border-radius);
+
             overflow: hidden;
+
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+
             position: relative;
+
         }
+
 
         .quiz-image img {
+
             width: 100%;
+
             height: 100%;
+
             display: block;
+
             object-fit: cover;
+
             transition: transform var(--transition-speed) ease;
+
         }
+
 
         .quiz-image:hover img {
+
             transform: scale(1.05);
+
         }
+
 
         .quiz-image:hover {
+
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
         }
+
         
+
         .drag-drop-quiz-container {
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 2rem;
+
         }
+
 
         .column {
+
             flex: 1;
+
             padding: 1rem;
+
             border-radius: var(--border-radius);
+
             min-height: 300px;
+
         }
+
 
         .column h3 {
+
             text-align: center;
+
             color: var(--secondary-color);
+
         }
+
 
         .judet-zone {
+
             display: flex;
+
             align-items: center;
+
             border: 2px dashed #ccc;
+
             background-color: #f0f0f0;
+
             padding: 0.5rem;
+
             margin-bottom: 0.5rem;
+
             border-radius: 8px;
+
         }
+
 
         .judet-zone p {
+
             margin: 0;
+
             padding-right: 1rem;
+
             font-weight: bold;
+
             width: 120px;
+
         }
+
         
+
         .draggable-item {
+
             padding: 0.75rem;
+
             margin-bottom: 0.5rem;
+
             border-radius: 8px;
+
             background-color: var(--background-color);
+
             border: 1px solid #dee2e6;
+
             cursor: grab;
+
             transition: background-color var(--transition-speed) ease;
+
         }
+
 
         .draggable-item:active {
+
             cursor: grabbing;
+
         }
+
         
+
         .submit-button {
+
             display: block;
+
             width: 200px;
+
             margin: 2rem auto 0;
+
             padding: 1rem 2rem;
+
             background-color: var(--primary-color);
+
             color: white;
+
             border: none;
+
             border-radius: 50px;
+
             font-size: 1rem;
+
             font-weight: bold;
+
             cursor: pointer;
+
             transition: background-color var(--transition-speed) ease;
+
         }
+
 
         .submit-button:hover {
+
             background-color: #0056b3;
+
         }
+
 
         .score-display {
+
             text-align: center;
+
             font-size: 1.5rem;
+
             font-weight: bold;
+
             margin-top: 1rem;
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
 <header>
+
     <h1>Jocuri Geografice - România</h1>
+
     <p>O colecție de jocuri interactive pentru a învăța geografia României.</p>
+
 </header>
+
 
 <div class="container">
 
+
     <div class="section">
+
         <h2>Pasul 1: Quiz Relieful și Râurile României</h2>
+
         <div class="quiz-item">
+
             <div class="quiz-details">
+
                 <h3>Quiz Relieful României</h3>
+
                 <p>Verifică-ți cunoștințele despre formele de relief din România. Apasă pe hartă pentru a începe jocul!</p>
+
             </div>
+
             <a href="https://www.purposegames.com/game/relieful-romaniei" target="_blank" class="quiz-link">
+
                 <div class="quiz-image">
+
                     <img src="https://upload.wikimedia.org/wikipedia/ro/thumb/4/42/HartaROgf.jpg/500px-HartaROgf.jpg" alt="Harta României cu relieful">
+
                 </div>
+
             </a>
+
         </div>
+
         
+
         <hr style="border: 0; height: 1px; background: #dee2e6; margin: 2rem 0;">
 
+
         <div class="quiz-item quiz-item-reverse">
+
             <div class="quiz-details">
+
                 <h3>Quiz Râurile României</h3>
+
                 <p>Identifică principalele râuri care străbat teritoriul României. Dă click pe imagine pentru a te testa!</p>
+
             </div>
+
             <a href="https://geogra.ro/ro/jocuri-geografice/romania/raurile-romaniei/" target="_blank" class="quiz-link">
+
                 <div class="quiz-image">
+
                     <img src="https://i.pinimg.com/736x/c6/e4/a3/c6e4a33ac308e1084e046b788891c26e.jpg" alt="Harta României cu râurile">
+
                 </div>
+
             </a>
+
         </div>
+
     </div>
+
     
+
     <div class="section">
+
         <h2>Pasul 2: Quiz Județele României și Geoguessr</h2>
+
         <div class="quiz-item">
+
             <div class="quiz-details">
+
                 <h3>Quiz Județele României</h3>
+
                 <p>Identifică fiecare județ al României pe hartă. Apasă pe hartă pentru a începe!</p>
+
             </div>
-            <a href="https://www.purposegames.com/game/relieful-romaniei" target="_blank" class="quiz-link">
+
+            <a href="https://www.geoguessr.com/vgp/3087?locale=ro" target="_blank" class="quiz-link">
+
                 <div class="quiz-image">
+
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Rom%C3%A2nia_Jude%C5%A3e.jpg" alt="Harta României cu județele">
+
                 </div>
+
             </a>
+
         </div>
+
         
+
         <hr style="border: 0; height: 1px; background: #dee2e6; margin: 2rem 0;">
 
+
         <div class="quiz-item quiz-item-reverse">
+
             <div class="quiz-details">
+
                 <h3>Reședințele de Județ ale României</h3>
+
                 <p>Explorează România prin Street View și ghicește unde te afli.</p>
+
             </div>
-            <a href="https://www.geoguessr.com/vgp/3087?locale=ro" target="_blank" class="quiz-link">
+
+            <a href="https://www.geoguessr.com/vgp/3756?locale=ro" target="_blank" class="quiz-link">
+
                 <div class="quiz-image">
+
                     <img src="https://cdn.adh.reperio.news/image-a/afa87ae2-3e3c-4cdd-9251-1e6e84d7c529/index.jpeg?p=a%3D1%26co%3D1.05%26w%3D700%26h%3D750%26r%3Dcontain%26f%3Dwebp" alt="Harta României cu reședințele de județ">
+
                 </div>
+
             </a>
+
         </div>
+
     </div>
 
+
     <div class="section">
+
         <h2>Pasul 3: Județe și Reședințe - Drag and Drop</h2>
+
         <p>Trage reședințele de județ în dreptul județului corespunzător.</p>
+
         <div class="drag-drop-quiz-container">
+
             <div class="column" id="judete-column">
+
                 <h3>Județe</h3>
+
             </div>
+
             <div class="column" id="resedinte-column">
+
                 <h3>Reședințe de Județ</h3>
+
             </div>
+
         </div>
+
         <button class="submit-button">Verifică Răspunsurile</button>
+
         <div class="score-display"></div>
+
     </div>
+
 
 </div>
 
+
 <script>
+
     document.addEventListener('DOMContentLoaded', () => {
+
         const quizData = [
+
             { judet: "Alba", resedinta: "Alba Iulia" },
+
             { judet: "Arad", resedinta: "Arad" },
+
             { judet: "Argeș", resedinta: "Pitești" },
+
             { judet: "Bacău", resedinta: "Bacău" },
+
             { judet: "Bihor", resedinta: "Oradea" },
+
             { judet: "Bistrița-Năsăud", resedinta: "Bistrița" },
+
             { judet: "Botoșani", resedinta: "Botoșani" },
+
             { judet: "Brașov", resedinta: "Brașov" },
+
             { judet: "Brăila", resedinta: "Brăila" },
+
             { judet: "Buzău", resedinta: "Buzău" },
+
             { judet: "Caraș-Severin", resedinta: "Reșița" },
+
             { judet: "Călărași", resedinta: "Călărași" },
+
             { judet: "Cluj", resedinta: "Cluj-Napoca" },
+
             { judet: "Constanța", resedinta: "Constanța" },
+
             { judet: "Covasna", resedinta: "Sfântu Gheorghe" },
+
             { judet: "Dâmbovița", resedinta: "Târgoviște" },
+
             { judet: "Dolj", resedinta: "Craiova" },
+
             { judet: "Galați", resedinta: "Galați" },
+
             { judet: "Giurgiu", resedinta: "Giurgiu" },
+
             { judet: "Gorj", resedinta: "Târgu Jiu" },
+
             { judet: "Harghita", resedinta: "Miercurea Ciuc" },
+
             { judet: "Hunedoara", resedinta: "Deva" },
+
             { judet: "Ialomița", resedinta: "Slobozia" },
+
             { judet: "Iași", resedinta: "Iași" },
+
             { judet: "Ilfov", resedinta: "Buftea" },
+
             { judet: "Maramureș", resedinta: "Baia Mare" },
+
             { judet: "Mehedinți", resedinta: "Drobeta-Turnu Severin" },
+
             { judet: "Mureș", resedinta: "Târgu Mureș" },
+
             { judet: "Neamț", resedinta: "Piatra Neamț" },
+
             { judet: "Olt", resedinta: "Slatina" },
+
             { judet: "Prahova", resedinta: "Ploiești" },
+
             { judet: "Satu Mare", resedinta: "Satu Mare" },
+
             { judet: "Sălaj", resedinta: "Zalău" },
+
             { judet: "Sibiu", resedinta: "Sibiu" },
+
             { judet: "Suceava", resedinta: "Suceava" },
+
             { judet: "Teleorman", resedinta: "Alexandria" },
+
             { judet: "Timiș", resedinta: "Timișoara" },
+
             { judet: "Tulcea", resedinta: "Tulcea" },
+
             { judet: "Vaslui", resedinta: "Vaslui" },
+
             { judet: "Vâlcea", resedinta: "Râmnicu Vâlcea" },
+
             { judet: "Vrancea", resedinta: "Focșani" },
+
         ];
+
         
+
         const judeteColumn = document.getElementById('judete-column');
+
         const resedinteColumn = document.getElementById('resedinte-column');
+
         const submitButton = document.querySelector('.submit-button');
+
         const scoreDisplay = document.querySelector('.score-display');
+
         let draggedItem = null;
 
+
         function shuffle(array) {
+
             for (let i = array.length - 1; i > 0; i--) {
+
                 const j = Math.floor(Math.random() * (i + 1));
+
                 [array[i], array[j]] = [array[j], array[i]];
+
             }
+
             return array;
+
         }
+
 
         function createQuiz() {
+
             judeteColumn.innerHTML = '<h3>Județe</h3>';
+
             resedinteColumn.innerHTML = '<h3>Reședințe de Județ</h3>';
+
             scoreDisplay.textContent = '';
+
             submitButton.disabled = false;
+
             submitButton.textContent = 'Verifică Răspunsurile';
+
             
+
             const shuffledResedinte = shuffle([...quizData.map(item => item.resedinta)]);
+
             
+
             quizData.forEach(item => {
+
                 const judetDiv = document.createElement('div');
+
                 judetDiv.classList.add('judet-zone');
+
                 judetDiv.dataset.judet = item.judet;
+
                 judetDiv.innerHTML = `<p>${item.judet}</p>`;
+
                 judeteColumn.appendChild(judetDiv);
+
             });
+
 
             shuffledResedinte.forEach(resedinta => {
+
                 const resedintaDiv = document.createElement('div');
+
                 resedintaDiv.classList.add('draggable-item');
+
                 resedintaDiv.setAttribute('draggable', 'true');
+
                 resedintaDiv.textContent = resedinta;
+
                 resedintaDiv.dataset.resedinta = resedinta;
+
                 resedinteColumn.appendChild(resedintaDiv);
+
             });
+
 
             addEventListeners();
+
         }
+
 
         function addEventListeners() {
+
             const draggableItems = document.querySelectorAll('.draggable-item');
+
             const judetZones = document.querySelectorAll('.judet-zone');
+
             
+
             draggableItems.forEach(item => {
+
                 item.addEventListener('dragstart', (e) => {
+
                     draggedItem = e.target;
+
                     e.target.style.opacity = '0.5';
+
                 });
+
 
                 item.addEventListener('dragend', (e) => {
+
                     e.target.style.opacity = '1';
+
                 });
+
             });
+
 
             judetZones.forEach(zone => {
+
                 zone.addEventListener('dragover', (e) => {
+
                     e.preventDefault();
+
                 });
+
 
                 zone.addEventListener('drop', (e) => {
+
                     e.preventDefault();
+
                     if (draggedItem) {
+
                         const existingResedinta = zone.querySelector('.draggable-item');
+
                         if (existingResedinta) {
+
                             resedinteColumn.appendChild(existingResedinta);
+
                         }
+
                         zone.appendChild(draggedItem);
+
                         draggedItem = null;
+
                     }
+
                 });
+
             });
+
 
             submitButton.addEventListener('click', () => {
+
                 let score = 0;
+
                 const totalQuestions = quizData.length;
+
                 let allAnswered = true;
 
+
                 judetZones.forEach(zone => {
+
                     const assignedResedinta = zone.querySelector('.draggable-item');
+
                     if (!assignedResedinta) {
+
                         allAnswered = false;
+
                         zone.style.backgroundColor = '#f8d7da';
+
                         return;
+
                     }
+
                     const correctResedinta = quizData.find(item => item.judet === zone.dataset.judet).resedinta;
+
                     
+
                     if (assignedResedinta.dataset.resedinta === correctResedinta) {
+
                         zone.style.backgroundColor = '#d4edda';
+
                         assignedResedinta.style.backgroundColor = '#d4edda';
+
                         score++;
+
                     } else {
+
                         zone.style.backgroundColor = '#f8d7da';
+
                         assignedResedinta.style.backgroundColor = '#f8d7da';
+
                     }
+
                     zone.style.border = 'none';
+
                     assignedResedinta.draggable = false;
+
                 });
+
                 
+
                 if (!allAnswered) {
+
                     alert('Te rog să completezi toate județele înainte de a verifica!');
+
                     judetZones.forEach(zone => {
+
                         zone.style.border = '2px dashed #ccc';
+
                         if (!zone.querySelector('.draggable-item')) {
+
                             zone.style.backgroundColor = '#fff3cd';
+
                         }
+
                     });
+
                     return;
+
                 }
 
+
                 scoreDisplay.textContent = `Ai obținut ${score} puncte din ${totalQuestions}!`;
+
                 
+
                 submitButton.disabled = true;
+
             });
+
         }
+
         
+
         createQuiz();
+
     });
+
 </script>
 
+
 </body>
-</html>
+
+</html> 
